@@ -1,3 +1,12 @@
+# Autores: Ricardo Jorge Rodríguez Treviño, André Borda Ramos
+# Matrículas: A00831595, A01284398
+# Fecha: 01/12/2021
+# Descripción: Archivo receptor de los datos de temperatura y humedad 
+# enviados a través de un Broker MQTT. Su funcionalidad es que además 
+# de recibir, también manda y ejecutar determinadas instrucciones en una 
+# base de datos de MySQL, almacenando de igual forma los datos recibidos 
+# en un principio. Todo esto es realizado también por medio del Broker.
+
 import json
 import paho.mqtt.client as mqtt
 import random
@@ -49,6 +58,7 @@ def on_connect(client, userdata, flags, rc):
     print ("Connected with Code :" +str(rc))
     client.subscribe("A01284398")
 
+# Función que recibe los datos del sensor y ejecuta instrucciones de MySQL 
 def on_message(client, userdata, msg):
     global cont
     global counter
@@ -99,8 +109,7 @@ def on_message(client, userdata, msg):
         sumTemp = 0
         sumHum = 0
         
-# Generamos el cliente y las funciones para recibir mensajes y
-# cuando se genera la conexión.
+# Generamos el cliente y las funciones para recibir mensajes y se genera la conexión.
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
@@ -115,6 +124,6 @@ while opc == '' or True:
     time.sleep(10)
     # opc = input('Teclea enter para continuar, otro para salir...')
        
-# al salir paramos el loop y nos desconectamos
+# Al salir se detiene el loop y termina
 client.loop_stop()
 client.disconnect()
