@@ -1,0 +1,32 @@
+CREATE TABLE Dispositivo(
+    dispositivoID CHAR(10) NOT NULL,
+    Domicilio CHAR(5) NOT NULL,
+    tipoSensor CHAR(10) NOT NULL,
+    tipoDispositivo CHAR(1) NOT NULL,
+    PRIMARY KEY(dispositivoID)
+);
+
+CREATE TABLE DataLogging(
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    Fecha CHAR(10) NOT NULL,
+    Hora CHAR(10) NOT NULL,
+    Tipo CHAR(15) NOT NULL,
+    Dato FLOAT NOT NULL,
+    dispositivoID CHAR(10) NOT NULL,
+    FOREIGN KEY(dispositivoID) REFERENCES Dispositivo(dispositivoID)
+);
+
+CREATE TABLE Resultado(
+    Fecha TIME NOT NULL,
+    PromedioTemp FLOAT NOT NULL,
+    PromedioHumedad FLOAT NOT NULL,
+    Tiempo CHAR(5) NOT NULL,
+    Ahorro FLOAT NOT NULL,
+    PRIMARY KEY(Fecha)
+);
+
+CREATE TABLE Genera(
+    dispositivoID CHAR(10) NOT NULL,
+    Fecha CHAR(10) NOT NULL,
+    PRIMARY KEY(dispositivoID, Fecha)
+);
