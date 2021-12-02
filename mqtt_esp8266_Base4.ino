@@ -1,4 +1,10 @@
-
+// Autores: Ricardo Jorge Rodríguez Treviño, André Borda Ramos
+// Matrículas: A00831595, A01284398
+// Fecha: 01/12/2021
+// Descripción: Archivo que recibe los datos obtenidos por el sensor 
+// correspondientes a la humedad y temperatura cada cierto tiempo; 
+// además de enviarlos a través de un Broker MQTT para su posterior 
+// recepción y con ello, utilización.
 
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
